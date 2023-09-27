@@ -2,6 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 
 const authRouter = require("./routes/auth");
+const adminRouter = require("./routes/admin");
 
 const app = express();
 const PORT = 3000;
@@ -11,6 +12,7 @@ const DB =
 // middleware
 app.use(express.json());
 app.use(authRouter);
+app.use(adminRouter);
 
 mongoose
   .connect(DB)
