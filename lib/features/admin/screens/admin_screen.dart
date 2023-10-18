@@ -1,4 +1,8 @@
 import 'package:amazon_clone/constants/global_variables.dart';
+import 'package:amazon_clone/features/account/widgets/below_app_bar.dart';
+import 'package:amazon_clone/features/account/widgets/top_buttons.dart';
+import 'package:amazon_clone/features/admin/screens/analytics_screen.dart';
+import 'package:amazon_clone/features/admin/screens/order_screen.dart';
 import 'package:amazon_clone/features/admin/screens/posts_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -16,8 +20,20 @@ class _AdminScreenState extends State<AdminScreen> {
 
   List<Widget> pages = [
     const PostsScreen(),
-    const Center(child: Text('Analytics Page')),
-    const Center(child: Text('Inbox Page')),
+    const AnalyticsScreen(),
+    const OrderScreen(),
+    Column(
+      children: const [
+        BelowAppBar(),
+        const SizedBox(
+          height: 10,
+        ),
+        TopButtons(),
+        const SizedBox(
+          height: 20,
+        ),
+      ],
+    ),
   ];
 
   void updatePage(int page) {
@@ -114,6 +130,22 @@ class _AdminScreenState extends State<AdminScreen> {
                 )),
               ),
               child: const Icon(Icons.all_inbox_outlined),
+            ),
+            label: '',
+          ),
+          BottomNavigationBarItem(
+            icon: Container(
+              width: bottomBarWidth,
+              decoration: BoxDecoration(
+                border: Border(
+                    top: BorderSide(
+                  color: _page == 3
+                      ? GlobalVariables.selectedNavBarColor
+                      : GlobalVariables.backgroundColor,
+                  width: bottomBarBorderWidth,
+                )),
+              ),
+              child: const Icon(Icons.person_outline_outlined),
             ),
             label: '',
           ),
