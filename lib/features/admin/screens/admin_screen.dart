@@ -22,14 +22,14 @@ class _AdminScreenState extends State<AdminScreen> {
     const PostsScreen(),
     const AnalyticsScreen(),
     const OrderScreen(),
-    Column(
-      children: const [
+    const Column(
+      children: [
         BelowAppBar(),
-        const SizedBox(
+        SizedBox(
           height: 10,
         ),
         TopButtons(),
-        const SizedBox(
+        SizedBox(
           height: 20,
         ),
       ],
@@ -90,12 +90,13 @@ class _AdminScreenState extends State<AdminScreen> {
               width: bottomBarWidth,
               decoration: BoxDecoration(
                 border: Border(
-                    top: BorderSide(
-                  color: _page == 0
-                      ? GlobalVariables.selectedNavBarColor
-                      : GlobalVariables.backgroundColor,
-                  width: bottomBarBorderWidth,
-                )),
+                  top: BorderSide(
+                    color: _page == 0
+                        ? GlobalVariables.selectedNavBarColor
+                        : GlobalVariables.backgroundColor,
+                    width: bottomBarBorderWidth,
+                  ),
+                ),
               ),
               child: const Icon(Icons.home_outlined),
             ),
@@ -106,12 +107,13 @@ class _AdminScreenState extends State<AdminScreen> {
               width: bottomBarWidth,
               decoration: BoxDecoration(
                 border: Border(
-                    top: BorderSide(
-                  color: _page == 1
-                      ? GlobalVariables.selectedNavBarColor
-                      : GlobalVariables.backgroundColor,
-                  width: bottomBarBorderWidth,
-                )),
+                  top: BorderSide(
+                    color: _page == 1
+                        ? GlobalVariables.selectedNavBarColor
+                        : GlobalVariables.backgroundColor,
+                    width: bottomBarBorderWidth,
+                  ),
+                ),
               ),
               child: const Icon(Icons.analytics_outlined),
             ),
@@ -122,12 +124,13 @@ class _AdminScreenState extends State<AdminScreen> {
               width: bottomBarWidth,
               decoration: BoxDecoration(
                 border: Border(
-                    top: BorderSide(
-                  color: _page == 2
-                      ? GlobalVariables.selectedNavBarColor
-                      : GlobalVariables.backgroundColor,
-                  width: bottomBarBorderWidth,
-                )),
+                  top: BorderSide(
+                    color: _page == 2
+                        ? GlobalVariables.selectedNavBarColor
+                        : GlobalVariables.backgroundColor,
+                    width: bottomBarBorderWidth,
+                  ),
+                ),
               ),
               child: const Icon(Icons.all_inbox_outlined),
             ),
@@ -138,12 +141,13 @@ class _AdminScreenState extends State<AdminScreen> {
               width: bottomBarWidth,
               decoration: BoxDecoration(
                 border: Border(
-                    top: BorderSide(
-                  color: _page == 3
-                      ? GlobalVariables.selectedNavBarColor
-                      : GlobalVariables.backgroundColor,
-                  width: bottomBarBorderWidth,
-                )),
+                  top: BorderSide(
+                    color: _page == 3
+                        ? GlobalVariables.selectedNavBarColor
+                        : GlobalVariables.backgroundColor,
+                    width: bottomBarBorderWidth,
+                  ),
+                ),
               ),
               child: const Icon(Icons.person_outline_outlined),
             ),
