@@ -2,7 +2,9 @@ import 'package:amazon_clone/common/widgets/loader.dart';
 import 'package:amazon_clone/features/home/services/home_services.dart';
 import 'package:amazon_clone/features/product_details/screens/product_detail_screen.dart';
 import 'package:amazon_clone/models/product.dart';
+import 'package:amazon_clone/providers/user_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class DealOfDay extends StatefulWidget {
   const DealOfDay({super.key});
@@ -14,6 +16,7 @@ class DealOfDay extends StatefulWidget {
 class _DealOfDayState extends State<DealOfDay> {
   final HomeServices homeServices = HomeServices();
   Product? product;
+  bool? satisfied;
 
   @override
   void initState() {
@@ -26,6 +29,18 @@ class _DealOfDayState extends State<DealOfDay> {
     setState(() {});
   }
 
+  void sendFeedback(
+    userId,
+    itemId,
+  ) {
+    homeServices.sendFeedback(
+      context: context,
+      userId: userId,
+      itemId: itemId,
+      satisfied: satisfied!,
+    );
+  }
+
   void navigateToDetailProductScreen() {
     Navigator.pushNamed(
       context,
@@ -36,6 +51,8 @@ class _DealOfDayState extends State<DealOfDay> {
 
   @override
   Widget build(BuildContext context) {
+    final userProvider = Provider.of<UserProvider>(context, listen: false);
+
     return product == null
         ? const Loader()
         : product!.name.isEmpty
@@ -98,11 +115,65 @@ class _DealOfDayState extends State<DealOfDay> {
                         vertical: 15,
                       ).copyWith(left: 15),
                       alignment: Alignment.topLeft,
-                      child: Text(
-                        'See all deals',
-                        style: TextStyle(
-                          color: Colors.cyan[800],
-                        ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            'See all deals',
+                            style: TextStyle(
+                              color: Colors.cyan[800],
+                            ),
+                          ),
+                          Row(
+                            children: [
+                              Text(
+                                'Rate this recommendation',
+                                style: TextStyle(
+                                  color: Colors.cyan[800],
+                                ),
+                              ),
+                              const SizedBox(width: 6),
+                              GestureDetector(
+                                onTap: () {
+                                  setState(() {
+                                    satisfied = true;
+                                  });
+                                  sendFeedback(
+                                    userProvider.user.id,
+                                    product!.id,
+                                  );
+                                },
+                                child: Icon(
+                                  Icons.thumb_up,
+                                  size: 14,
+                                  color: satisfied == true
+                                      ? Colors.blue
+                                      : Colors.grey,
+                                ),
+                              ),
+                              const SizedBox(width: 4),
+                              GestureDetector(
+                                onTap: () {
+                                  setState(() {
+                                    satisfied = false;
+                                  });
+                                  sendFeedback(
+                                    userProvider.user.id,
+                                    product!.id,
+                                  );
+                                },
+                                child: Icon(
+                                  Icons.thumb_down,
+                                  size: 14,
+                                  color: satisfied == false
+                                      ? Colors.red
+                                      : Colors.grey,
+                                ),
+                              ),
+                              const SizedBox(width: 6),
+                            ],
+                          ),
+                        ],
                       ),
                     ),
                   ],

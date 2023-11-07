@@ -79,4 +79,31 @@ class HomeServices {
 
     return product;
   }
+
+  void sendFeedback({
+    required BuildContext context,
+    required String userId,
+    required String itemId,
+    required bool satisfied,
+  }) async {
+    final userProvider = Provider.of<UserProvider>(context, listen: false);
+    try {
+      await http.post(
+        Uri.parse('$uri/api/send-feedback'),
+        headers: {
+          'Content-Type': 'application/json; charset=UTF-8',
+          'x-auth-token': userProvider.user.token,
+        },
+        body: jsonEncode(
+          {
+            'userId': userId,
+            'itemId': itemId,
+            'helpful': satisfied,
+          },
+        ),
+      );
+    } catch (e) {
+      showSnackBar(context, e.toString());
+    }
+  }
 }

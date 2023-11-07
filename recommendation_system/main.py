@@ -73,18 +73,20 @@ def generate_combined_recommendations(users_collab, users_content, items_content
 
         for j in range(len(items_content)):
             item = items_content[j]
-            combined_score = 0
 
-            for k in range(len(users_collab)):
-                similarity_collab = similarity_matrix_collab[i][k]
-                similarity_content = similarity_matrix_content[i][k]
+            if user_ratings[i][j] == 0:
+                combined_score = 0
 
-                combined_similarity = weight_collab * similarity_collab + weight_content * similarity_content
-                user_rating = user_ratings[k][j]
+                for k in range(len(users_collab)):
+                    similarity_collab = similarity_matrix_collab[i][k]
+                    similarity_content = similarity_matrix_content[i][k]
 
-                combined_score += combined_similarity * user_rating
+                    combined_similarity = weight_collab * similarity_collab + weight_content * similarity_content
+                    user_rating = user_ratings[k][j]
 
-            user_recommendations.append({'user': users_content[i], 'item': item, 'score': combined_score})
+                    combined_score += combined_similarity * user_rating
+
+                user_recommendations.append({'user': users_content[i], 'item': item, 'score': combined_score})
 
         combined_recommendations.extend(user_recommendations)
 
