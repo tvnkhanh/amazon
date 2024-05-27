@@ -1,5 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
+require("dotenv").config();
 
 const authRouter = require("./routes/auth");
 const adminRouter = require("./routes/admin");
@@ -8,8 +9,7 @@ const userRouter = require("./routes/user");
 
 const app = express();
 const PORT = 3000;
-const DB =
-  "mongodb+srv://tuvankhanh2002:2042002lol@cluster0.pxpacj1.mongodb.net/?retryWrites=true&w=majority";
+const DB = process.env.DB_CONNECTION_STRING;
 
 // middleware
 app.use(express.json());

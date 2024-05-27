@@ -94,7 +94,7 @@ class _AuthScreenState extends State<AuthScreen> {
               if (_auth == Auth.signup)
                 Container(
                   padding: const EdgeInsets.all(8),
-                  color: GlobalVariables.backgroundColor,
+                  color: GlobalVariables.secondaryColor,
                   child: Form(
                     key: _signUpFormKey,
                     child: Column(
@@ -123,6 +123,7 @@ class _AuthScreenState extends State<AuthScreen> {
                         ),
                         CustomButton(
                           text: 'Sign Up',
+                          color: GlobalVariables.backgroundColor,
                           onTap: () {
                             if (_signUpFormKey.currentState!.validate()) {
                               signUpUser();
@@ -157,7 +158,7 @@ class _AuthScreenState extends State<AuthScreen> {
               if (_auth == Auth.signin)
                 Container(
                   padding: const EdgeInsets.all(8),
-                  color: GlobalVariables.backgroundColor,
+                  color: GlobalVariables.secondaryColor,
                   child: Form(
                     key: _signInFormKey,
                     child: Column(
@@ -179,6 +180,7 @@ class _AuthScreenState extends State<AuthScreen> {
                         ),
                         CustomButton(
                           text: 'Sign In',
+                          color: GlobalVariables.backgroundColor,
                           onTap: () {
                             if (_signInFormKey.currentState!.validate()) {
                               signInUser();
