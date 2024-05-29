@@ -45,7 +45,7 @@ This project is a fully functional e-commerce application built using Flutter fo
 
    - Navigate to the `server` directory.
      ```sh
-     cd amazon-clone/server
+     cd server
      ```
    - Install backend dependencies.
      ```sh
