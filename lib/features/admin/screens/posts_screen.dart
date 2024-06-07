@@ -27,7 +27,41 @@ class _PostsScreenState extends State<PostsScreen> {
     setState(() {});
   }
 
-  void deleteProduct(Product product, int index) {
+  Future<void> _showDeleteConfirmationDialog(Product product, int index) async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Delete Product'),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: <Widget>[
+                Text('Are you sure you want to delete this product?'),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: Text('Cancel'),
+              onPressed: () {
+                Navigator.of(context).pop(); // Dismiss the dialog
+              },
+            ),
+            TextButton(
+              child: Text('Delete'),
+              onPressed: () {
+                Navigator.of(context).pop(); // Dismiss the dialog
+                _deleteProduct(product, index); // Proceed with deletion
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  void _deleteProduct(Product product, int index) {
     adminServices.deleteProduct(
       context: context,
       product: product,
@@ -36,6 +70,10 @@ class _PostsScreenState extends State<PostsScreen> {
         setState(() {});
       },
     );
+  }
+
+  void deleteProduct(Product product, int index) {
+    _showDeleteConfirmationDialog(product, index);
   }
 
   void navigateToAddProduct() {

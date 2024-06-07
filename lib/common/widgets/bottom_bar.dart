@@ -51,12 +51,13 @@ class _BottomBarState extends State<BottomBar> {
               width: bottomBarWidth,
               decoration: BoxDecoration(
                 border: Border(
-                    top: BorderSide(
-                  color: _page == 0
-                      ? GlobalVariables.selectedNavBarColor
-                      : GlobalVariables.backgroundColor,
-                  width: bottomBarBorderWidth,
-                )),
+                  top: BorderSide(
+                    color: _page == 0
+                        ? GlobalVariables.selectedNavBarColor
+                        : GlobalVariables.backgroundColor,
+                    width: bottomBarBorderWidth,
+                  ),
+                ),
               ),
               child: const Icon(Icons.home_outlined),
             ),

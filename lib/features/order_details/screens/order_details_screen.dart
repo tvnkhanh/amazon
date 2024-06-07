@@ -228,6 +228,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                       return CustomButton(
                         text: 'Done',
                         onTap: () => changeOrderStatus(details.currentStep),
+                        color: GlobalVariables.secondaryColor,
                       );
                     }
                     return const SizedBox();
@@ -243,8 +244,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                     ),
                     Step(
                       title: const Text('Completed'),
-                      content: const Text(
-                          'Your order has been delivered, you are yet to sign.'),
+                      content: const Text('Your order has been completed'),
                       isActive: currentStep > 1,
                       state: currentStep > 1
                           ? StepState.complete
@@ -253,7 +253,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                     Step(
                       title: const Text('Received'),
                       content: const Text(
-                          'Your order has been delivered and signed by you.'),
+                          'Your order has been delivered, you are yet to sign.'),
                       isActive: currentStep > 2,
                       state: currentStep > 2
                           ? StepState.complete
